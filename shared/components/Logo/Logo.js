@@ -4,6 +4,7 @@ function Logo({ size, ...rest }) {
   const DEFAULT_LOGO_SIZE = 60;
   const newSize = size || DEFAULT_LOGO_SIZE;
   const LOGO_RATIO = 0.4;
+  
   return (
     <Box {...rest}>
       <svg
