@@ -69,6 +69,14 @@ function AppHead() {
   }, []);
 
   useEffect(() => {
+    // Feeding Chatbot with an initial event when website page loads.
+    window.$crisp.push([
+      'set',
+      'session:event',
+      [[['chaseoakstv:page:loaded', {}, 'red']]],
+    ]);
+  }, []);
+  useEffect(() => {
     window.$crisp.push(['set', 'user:email', [currentUser?.profile?.email]]);
     window.$crisp.push([
       'set',
