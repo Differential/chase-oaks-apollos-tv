@@ -59,45 +59,6 @@ function AppHead() {
   }, [router.events]);
 
   useEffect(() => {
-    window.$crisp = [];
-    window.CRISP_WEBSITE_ID = '624c16ea-96f3-4f9f-9938-b4955c39391e';
-    const d = document;
-    const s = d.createElement('script');
-    s.src = 'https://client.crisp.chat/l.js';
-    s.async = 1;
-    d.getElementsByTagName('head')[0].appendChild(s);
-  }, []);
-
-  useEffect(() => {
-    // Feeding Chatbot with an initial event when website page loads.
-    window.$crisp.push([
-      'set',
-      'session:event',
-      [[['chaseoakstv:page:loaded', {}, 'red']]],
-    ]);
-  }, []);
-  useEffect(() => {
-    window.$crisp.push(['set', 'user:email', [currentUser?.profile?.email]]);
-    window.$crisp.push([
-      'set',
-      'user:nickname',
-      [`${currentUser?.profile?.firstName} ${currentUser?.profile?.lastName}`],
-    ]);
-    window.$crisp.push([
-      'set',
-      'user:avatar',
-      [currentUser?.profile?.photo?.uri],
-    ]);
-
-    return null;
-  }, [
-    currentUser?.profile?.email,
-    currentUser?.profile?.firstName,
-    currentUser?.profile?.lastName,
-    currentUser?.profile?.photo,
-  ]);
-
-  useEffect(() => {
     // Only run Amplitude Analytics in production
     if (process.env.NODE_ENV !== 'production') return null;
 
