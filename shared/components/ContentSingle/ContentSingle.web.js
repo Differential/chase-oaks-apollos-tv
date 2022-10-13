@@ -59,9 +59,10 @@ function ContentSingle(props = {}) {
   const { responsive } = useBreakpoint();
 
   const invalidPage = !props.loading && !props.data;
-  const requireAuth = !PUBLIC_CONTENT_CHANNELS.includes(
-    props.data?.parentChannel?.id
-  );
+  // const requireAuth = !PUBLIC_CONTENT_CHANNELS.includes(
+  //   props.data?.parentChannel?.id
+  // );
+  const requireAuth = false; // ChaseOaks asked to disable auth requirements
 
   useEffect(() => {
     if (invalidPage) {
