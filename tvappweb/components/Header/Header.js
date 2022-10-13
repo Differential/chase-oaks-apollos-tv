@@ -1,16 +1,36 @@
 import { Pressable } from 'react-native';
+import styled from 'styled-components';
 
 import { useNavigation } from 'shared/router';
 import { useBreakpoint } from 'shared/providers/BreakpointProvider';
 
 import { Logo } from 'shared/components';
-import { Box, systemPropTypes } from 'shared/ui-kit';
+import { system, Box, systemPropTypes } from 'shared/ui-kit';
+
+import { themeGet } from '@styled-system/theme-get';
 
 import Styled from './Header.styles';
 import Profile from './Profile';
 import Nav from './Nav';
 
 const isDev = process.env.NODE_ENV === 'development';
+
+const Link = styled.a`
+  color: ${themeGet('colors.text.tertiary')};
+  cursor: pointer;
+  display: block;
+  font-size: 0.75rem;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: ${themeGet('colors.text.primary')};
+  }
+
+  ${system}
+`;
 
 function Header(props = {}) {
   const router = useNavigation();
@@ -22,12 +42,16 @@ function Header(props = {}) {
 
   return (
     <Styled px={responsive({ _: 'base', lg: 'xl' })} {...props}>
-      <Box flex={0.33} flexDirection="row" alignItems="center">
-        <Pressable onPress={handleLogoPress}>
-          <Logo mr="xs" />
-        </Pressable>
-        <Profile />
+      <Box flex={0.33} flexDirection="column">
+        <Link href="https://chaseoaks.org">↩ Back to ChaseOaks.org</Link>
+        <Box flexDirection="row" alignItems="center">
+          <Pressable onPress={handleLogoPress}>
+            <Logo mr="xs" />
+          </Pressable>
+          <Profile />
+        </Box>
       </Box>
+
       <Box
         flex={1}
         flexDirection="row"
